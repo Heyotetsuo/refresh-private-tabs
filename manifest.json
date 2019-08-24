@@ -19,6 +19,6 @@
 	],
 	"background":
 	{
-		"scripts": ["scripts/closetab.js"]
+		"scripts": ["scripts/content.js"]
 	}
 }
