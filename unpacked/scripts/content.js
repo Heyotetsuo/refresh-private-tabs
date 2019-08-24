@@ -57,7 +57,6 @@ function saveTabs( id )
 }
 function closeTabs()
 { 
-	chrome.windows.create
 	chrome.windows.getAll( null, function( wins )
 	{
 		var id = -1;
