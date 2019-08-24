@@ -1,6 +1,6 @@
 var WINS = [];
 var REMAINDER = 0;
-var ANCHORID = 999999999;
+var ANCHORID = -1;
 var WORKING = false;
 
 function init()
@@ -26,15 +26,19 @@ function cleanup()
 {
 	chrome.windows.remove( ANCHORID );
 	WORKING = false;
+	ANCHORID = -1;
 }
 function anchor()
 {
 	var winData =
 	{
-		tabId: ANCHORID,
 		state: "minimized"
 	}
-	chrome.windows.create( winData );
+	chrome.windows.create( winData, function( id )
+	{
+		ANCHORID = id;
+		closeTabs();
+	});
 }
 function saveTabs( id )
 {
@@ -94,5 +98,4 @@ chrome.browserAction.onClicked.addListener( function()
 {
 	init();
 	anchor();
-	closeTabs();
 });
