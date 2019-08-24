@@ -34,9 +34,9 @@ function anchor()
 	{
 		state: "minimized"
 	}
-	chrome.windows.create( winData, function( id )
+	chrome.windows.create( winData, function( win )
 	{
-		ANCHORID = id;
+		ANCHORID = win.id;
 		closeTabs();
 	});
 }
