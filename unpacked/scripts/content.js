@@ -1,18 +1,40 @@
 var WINS = [];
 var REMAINDER = 0;
+var ANCHORID = 999999999;
+var WORKING = false;
 
 function init()
 {
 	WINS = [];
 	REMAINDER = 0;
+	WORKING = true;
 }
 function tryToFinish()
 {
+	if ( !WORKING )
+	{
+		return false;
+	}
 	REMAINDER -= 1;
 	if ( REMAINDER === 0 )
 	{
 		reopenTabs();
+		cleanup();
 	}
+}
+function cleanup()
+{
+	chrome.windows.remove( ANCHORID );
+	WORKING = false;
+}
+function anchor()
+{
+	var winData =
+	{
+		tabId: ANCHORID,
+		state: "minimized"
+	}
+	chrome.windows.create( winData );
 }
 function saveTabs( id )
 {
@@ -31,6 +53,7 @@ function saveTabs( id )
 }
 function closeTabs()
 { 
+	chrome.windows.create
 	chrome.windows.getAll( null, function( wins )
 	{
 		var id = -1;
@@ -70,5 +93,6 @@ chrome.windows.onRemoved.addListener( function( id )
 chrome.browserAction.onClicked.addListener( function()
 {
 	init();
+	anchor();
 	closeTabs();
 });
