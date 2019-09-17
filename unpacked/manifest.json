@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
-	"version": "1.0",
-	"name": "Renew Privates",
-	"description": "Closes then reopens all incogneto tabs",
+	"version": "1.0.1",
+	"name": "Incognito Refresher",
+	"description": "Closes then reopens all incognito tabs",
 	"icons":
 	{
 		"16": "images/icon16.png",
